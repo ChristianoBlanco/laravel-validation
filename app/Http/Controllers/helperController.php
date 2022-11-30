@@ -29,7 +29,7 @@ class helperController extends Controller
     public static function cpf(Request $request){
 
         $rules =  [
-            #'cpf' => 'required|Cpf',
+            'cpf' => 'required|Cpf',
             #'cnpj' => 'required|Cnpj',
             #'cpfcnpj' => 'required|cpf_cnpj',
             #'cnh' => 'required|Cnh',
@@ -44,7 +44,7 @@ class helperController extends Controller
         ];
 
         $message = [
-            #'cpf.Cpf' => 'Formato falso CPF !',
+            'cpf.Cpf' => 'Formato falso CPF !',
             #'cpf.Cnpj' => 'Formato falso CNPJ !',
             #'cpfcnpj.cpf_cnpj' => 'Formato falso do CPF ou CNPJ !',
             #'cnh.Cnh' => 'Formato falso da sua CNH !',

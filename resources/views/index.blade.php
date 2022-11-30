@@ -6,10 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Testes de Regras de <?= utf8_encode('Validação'); ?></title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script> -->
+
+    <script type="text/javascript" src="{{ asset('js/plugin/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/plugin/jquery.inputmask.bundle.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/AppMask.js')}}"></script>
+
+
 </head>
-<body>
+<body></body>
     @if (session('msg_status'))
     <div id="mensagem" class="alert alert-success" autofocus>
         {{session('msg_status')}}
@@ -58,33 +64,4 @@
    </form>
 </body>
 </html>
-<script>
-    $(".cpfcnpj").keydown(function(){
-    try {
-        $(".cpfcnpj").unmask();
-    } catch (e) {}
 
-    var tamanho = $(".cpfcnpj").val().length;
-
-    if(tamanho < 11){
-        $(".cpfcnpj").inputmask("999.999.999-99");
-    } else {
-        $(".cpfcnpj").inputmask("99.999.999/9999-99");
-    }
-    });
-
-    $(document).ready(function(){
-
-        $('.cpf').inputmask('999.999.999-99');
-        $('.cnpj').inputmask('99.999.999/9999-99');
-        $('.titulo').inputmask('999999999/99');
-        $('.cnh').inputmask('99999999999');
-        $('.inscricao_estadual').inputmask('99.999.99-9');
-        $('.nis').inputmask('999.99999.99-9');
-        $('.cns').inputmask('999999999999999');
-        $('.renavam').inputmask('99999999999');
-        $('.certidao').inputmask('999999999999999999999999999999-99');
-        $('.ddd').inputmask('999');
-
-    });
-</script>
