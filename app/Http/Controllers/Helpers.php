@@ -8,7 +8,7 @@ class Helpers extends Controller
 {
     public function ValidateCpf($cpf){
         // Extrai somente os números
-      $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
+      $cpf = preg_replace( '/[^0-9]/', '', $cpf );
 
       // Verifica se foi informado todos os digitos corretamente
       if (strlen($cpf) != 11) {
@@ -31,6 +31,7 @@ class Helpers extends Controller
           }
       }
       return true;
+       // return $cpf[$c];
 
       }
       public function ValidateCnpj($value): bool
@@ -68,11 +69,45 @@ class Helpers extends Controller
       }
       public function ValidateCpfCnpj($value){
 
+        //Seta as funções de validar Cpf e Cnpj e verifica se são verdadeiras
         if($this->ValidateCpf($value) || $this->ValidateCnpj($value)){
            return true;
         }
         return false;
       }
+
+      public function ValidateTelefone($value){
+        // Extrai somente os números
+        $value = preg_replace( '/[^0-9]/is', '', $value );
+
+        //Valida o formato dos dígitos do telefone
+        if (!preg_match('/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})\-?(\d{4}))$/', $value)) {
+            return false;
+        }
+        return true;
+
+      }
+
+      public function validatePis($value): bool{
+
+        // Extrai somente os números
+        $p = preg_replace( '/[^0-9]/is', '', $value );
+
+
+         $pis = sprintf('%011s', $p);
+
+         if (mb_strlen($pis) != 11 || preg_match("/^{$pis[0]}{11}$/", $pis)) {
+             return false;
+         }
+
+         for ($d = 0, $p = 2, $c = 9; $c >= 0; $c--, ($p < 9) ? $p++ : $p = 2) {
+           $d += $pis[$c] * $p;
+         }
+
+        return ($pis[10] == (((10 * $d) % 11) % 10));
+      }
+
+
 
       public function ValidateMatricula($value){
 
